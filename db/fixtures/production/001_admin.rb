@@ -1,13 +1,12 @@
-admin = User.create(
-  email: "admin@local.host",
-  name: "Administrator",
-  username: 'root',
-  password: "5iveL!fe",
-  password_confirmation: "5iveL!fe",
-  password_expires_at: Time.now,
-  theme_id: Gitlab::Theme::MARS
-
-)
+admin = User.seed(:email) do |s|
+  s.email = 'admin@local.host'
+  s.name = 'Administrator'
+  s.username = 'root'
+  s.password = '5iveL!fe'
+  s.password_confirmation = '5iveL!fe'
+  s.password_expires_at = Time.now
+  s.theme_id = Gitlab::Theme::MARS
+end.first
 
 admin.projects_limit = 10000
 admin.admin = true
